@@ -1,8 +1,6 @@
-name: oiwaraeru
-main: com.oiwaraeru.OiwaraeruPlugin
+name: Oiwaraeru
 version: 1.0.0
+main: com.oiwaraeru.OiwaraeruPlugin
 api-version: 1.21
-description: 隠しアイテムプラグイン「oiwaraeru」
-author: おい笑えるおじさん
-commands: {}
-permissions: {}
+author: 何を四天王
+description: カスタムアイテムとイベントを追加するプラグイン
