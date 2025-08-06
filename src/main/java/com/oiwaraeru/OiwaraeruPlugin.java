@@ -41,4 +41,3 @@ public class OiwaraeruPlugin extends JavaPlugin {
         Bukkit.addRecipe(ingotRecipe);
     }
 }
-
