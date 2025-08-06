@@ -1,20 +1,27 @@
 package com.oiwaraeru;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.oiwaraeru.listeners.ItemListener;
 
 public class OiwaraeruPlugin extends JavaPlugin {
 
+    private static OiwaraeruPlugin instance;
+
     @Override
     public void onEnable() {
+        instance = this;
         getLogger().info("Oiwaraeru Plugin Enabled!");
 
-        // 例: カスタムレシピを複数登録
+        // イベントリスナー登録
+        registerListeners();
+
+        // カスタムレシピ登録
         registerRecipes();
+
+        // コマンド登録
+        registerCommands();
     }
 
     @Override
@@ -22,22 +29,21 @@ public class OiwaraeruPlugin extends JavaPlugin {
         getLogger().info("Oiwaraeru Plugin Disabled!");
     }
 
-    private void registerRecipes() {
-        // 1つ目: ダイヤ剣
-        ItemStack customSword = new ItemStack(Material.DIAMOND_SWORD);
-        NamespacedKey swordKey = new NamespacedKey(this, "custom_sword");
-        ShapedRecipe swordRecipe = new ShapedRecipe(swordKey, customSword);
-        swordRecipe.shape(" D ", " D ", " S ");
-        swordRecipe.setIngredient('D', Material.DIAMOND);
-        swordRecipe.setIngredient('S', Material.STICK);
-        Bukkit.addRecipe(swordRecipe);
+    public static OiwaraeruPlugin getInstance() {
+        return instance;
+    }
 
-        // 2つ目: ダイヤブロック -> ネザライトインゴット
-        ItemStack customIngot = new ItemStack(Material.NETHERITE_INGOT);
-        NamespacedKey ingotKey = new NamespacedKey(this, "custom_ingot");
-        ShapedRecipe ingotRecipe = new ShapedRecipe(ingotKey, customIngot);
-        ingotRecipe.shape("DDD", "DDD", "DDD");
-        ingotRecipe.setIngredient('D', Material.DIAMOND_BLOCK);
-        Bukkit.addRecipe(ingotRecipe);
+    private void registerListeners() {
+        Bukkit.getPluginManager().registerEvents(new ItemListener(), this);
+        // 例: Bukkit.getPluginManager().registerEvents(new AnotherListener(), this);
+    }
+
+    private void registerRecipes() {
+        // TODO: カスタムレシピをここに追加する
+    }
+
+    private void registerCommands() {
+        // TODO: コマンド登録処理をここに追加する
+        // getCommand("mycommand").setExecutor(new MyCommand());
     }
 }
