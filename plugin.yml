@@ -1,8 +1,0 @@
-name: oiwaraeru
-main: com.oiwaraeru.OiwaraeruPlugin
-version: 1.0.0
-api-version: 1.21
-description: 隠しアイテムを追加するプラグイン
-author: あなたの名前
-commands: {}
-permissions: {}
